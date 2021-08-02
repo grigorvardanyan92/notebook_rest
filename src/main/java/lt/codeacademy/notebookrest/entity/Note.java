@@ -12,12 +12,16 @@ public class Note {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    String text;
-    Boolean isCompleted = false;
+    private String text;
+    private Boolean isCompleted = false;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    Category category;
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

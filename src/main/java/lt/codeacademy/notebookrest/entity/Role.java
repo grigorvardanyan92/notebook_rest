@@ -9,7 +9,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-public class Category {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +17,6 @@ public class Category {
 
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    private Set<Note> notes;
+    @OneToMany(mappedBy = "role")
+    Set<User> users;
 }
