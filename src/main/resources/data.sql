@@ -29,7 +29,9 @@ CREATE TABLE note
     category_id  BIGINT    NOT NULL REFERENCES category (id),
     user_id      BIGINT    NOT NULL REFERENCES "user" (id),
     text         TEXT,
-    is_completed BOOLEAN   NOT NULL
+    is_completed BOOLEAN   NOT NULL,
+    created      TIMESTAMP NOT NULL DEFAULT NOW(),
+    updated      TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 INSERT INTO category (name)
