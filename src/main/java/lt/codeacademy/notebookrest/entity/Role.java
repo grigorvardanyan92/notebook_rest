@@ -16,7 +16,4 @@ public class Role{
     private Long id;
 
     private String name;
-
-    @OneToMany(mappedBy = "role")
-    Set<User> users;
 }
