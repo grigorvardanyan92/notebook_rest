@@ -10,12 +10,22 @@ import java.util.List;
 public class NoteService {
 
     private final NoteRepository noteRepository;
+
     public NoteService(NoteRepository noteRepository) {
         this.noteRepository = noteRepository;
     }
 
     public Note save(Note note) {
         return noteRepository.save(note);
+    }
+
+    public Note getNote(Long id) {
+        return noteRepository.findById(id).orElse(null);
+    }
+
+    public Note getUncompletedNoteByUserId(Long id) {
+        Note note = getNote(id);
+        return note != null && !note.getIsCompleted() ? note : null;
     }
 
     public List<Note> getAllUncompletedByUserId(Long id) {
@@ -30,7 +40,7 @@ public class NoteService {
         return noteRepository.getAllByUserIdAndCategoryName(id, category);
     }
 
-    public void delete(Note note) {
-        noteRepository.delete(note);
+    public void deleteById(Long id) {
+        noteRepository.deleteById(id);
     }
 }
