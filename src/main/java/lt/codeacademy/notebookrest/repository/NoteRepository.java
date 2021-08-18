@@ -10,7 +10,8 @@ import java.util.Optional;
 @Repository
 public interface NoteRepository extends JpaRepository<Note, Long> {
 
+    public Optional<Note> getNoteByIdAndIsCompletedIsFalse(Long id);
     public List<Note> getAllByUserIdAndIsCompletedFalse(Long id);
-    public List<Note> getAllByUserIdAndCategoryName(Long id, String CategoryName);
-    public List<Note> getAllByUserIdAndIsCompletedTrue(Long id);
+    public List<Note> getAllByUserIdAndCategoryNameAndIsCompletedIsFalse(Long id, String CategoryName);
+    public List<Note> getAllByUserUsernameAndIsCompletedIsTrue(String username);
 }

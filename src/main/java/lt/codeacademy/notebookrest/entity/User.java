@@ -17,7 +17,11 @@ public class User {
     private Long id;
 
     private String username;
+
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Note> notes;
 
     @ManyToOne
     @JoinColumn(name = "role_id")

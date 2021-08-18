@@ -1,10 +1,12 @@
 package lt.codeacademy.notebookrest.controller;
 
+import lt.codeacademy.notebookrest.dto.response.NoteResponse;
 import lt.codeacademy.notebookrest.entity.Note;
 import lt.codeacademy.notebookrest.service.NoteService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/notes")
@@ -17,19 +19,24 @@ public class NoteController {
     }
 
     @PostMapping
-    public Note create(@RequestBody Note note) {
-        // if (principal.id == note.getUser.getId)?? TODO
-        return noteService.save(note);
+    public NoteResponse create(@RequestBody Note note) {
+        return new NoteResponse(noteService.save(note));
     }
 
     @GetMapping("/{id}")
-    public Note getUncompletedNote(@PathVariable Long id) {
-        return noteService.getUncompletedNoteByUserId(id);
+    public NoteResponse getUncompletedNote(@PathVariable Long id) {
+        return new NoteResponse(noteService.getUncompletedNoteById(1L));
     }
 
-    @PutMapping("/{id}")// ?? TODO
-    public Note update(@PathVariable Long id, @RequestBody Note note) {
-        return noteService.save(note);
+    @PutMapping("/{id}")
+    public void update(@PathVariable Long id, @RequestBody Note note) {
+        noteService.save(note);
+    }
+
+    @GetMapping("/{note}/completed")
+    public void setCompleted(@PathVariable Note note) {
+        note.setIsCompleted(true);
+        noteService.save(note);
     }
 
     @DeleteMapping("/{id}")
@@ -38,27 +45,31 @@ public class NoteController {
     }
 
     @GetMapping("/uncompleted")
-    public List<Note> getUncompletedNotes() {
-        return noteService.getAllUncompletedByUserId(1L);
+    public List<NoteResponse> getUncompletedNotes() {
+        return noteService.getAllUncompletedByUserId(1L).stream().map(NoteResponse::new).collect(Collectors.toList());
     }
 
     @GetMapping("/home")
-    public List<Note> getHomeNotes() {
-        return noteService.getAllByUserIdAndCategoryName(1L, "home");
+    public List<NoteResponse> getHomeNotes() {
+        return noteService.getAllByUserIdAndCategoryName(1L, "home")
+                .stream().map(NoteResponse::new).collect(Collectors.toList());
     }
 
     @GetMapping("/work")
-    public List<Note> getWorkNotes() {
-        return noteService.getAllByUserIdAndCategoryName(1L, "work");
+    public List<NoteResponse> getWorkNotes() {
+        return noteService.getAllByUserIdAndCategoryName(1L, "work")
+                .stream().map(NoteResponse::new).collect(Collectors.toList());
     }
 
     @GetMapping("/studies")
-    public List<Note> getStudiesNotes() {
-        return noteService.getAllByUserIdAndCategoryName(1L, "studies");
+    public List<NoteResponse> getStudiesNotes() {
+        return noteService.getAllByUserIdAndCategoryName(1L, "studies")
+                .stream().map(NoteResponse::new).collect(Collectors.toList());
     }
 
     @GetMapping("/personal")
-    public List<Note> getPersonalNotes() {
-        return noteService.getAllByUserIdAndCategoryName(1L, "personal");
+    public List<NoteResponse> getPersonalNotes() {
+        return noteService.getAllByUserIdAndCategoryName(1L, "personal")
+                .stream().map(NoteResponse::new).collect(Collectors.toList());
     }
 }

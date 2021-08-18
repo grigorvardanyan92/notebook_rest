@@ -16,4 +16,7 @@ public class Category {
     private Long id;
 
     private String name;
+
+    @OneToMany(mappedBy = "category")
+    private Set<Note> notes;
 }
