@@ -1,0 +1,210 @@
+{
+	"info": {
+		"_postman_id": "2a6b056e-b514-4d3f-bc56-513381c5adc0",
+		"name": "notebook_rest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "notes",
+			"item": [
+				{
+					"name": "getUncompletedNotes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/notes/uncompleted",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"uncompleted"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getWorkNotes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/notes/work",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"work"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"text\": \"Postman text\",\r\n        \"isCompleted\": false,\r\n        \"category\": {\r\n            \"id\": 3,\r\n            \"name\": \"studies\"\r\n        },\r\n        \"user\": {\r\n            \"id\": 1,\r\n            \"username\": \"user\",\r\n            \"password\": \"1234\",\r\n            \"role\": {\r\n                \"id\": 1,\r\n                \"name\": \"ROLE_USER\"\r\n            }\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/notes",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUncompletedNote",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/notes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"text\": \"updated text\",\r\n    \"isCompleted\": false,\r\n    \"category\": {\r\n        \"id\": 1,\r\n        \"name\": \"work\"\r\n    },\r\n    \"user\": {\r\n        \"id\": 1,\r\n        \"username\": \"user\",\r\n        \"password\": \"1234\",\r\n        \"role\": {\r\n            \"id\": 1,\r\n            \"name\": \"ROLE_USER\"\r\n        }\r\n    },\r\n    \"created\": \"2021-08-12T13:23:57.3601737\",\r\n    \"updated\": \"2021-08-12T13:23:57.3601737\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/notes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/notes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "complete",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/notes/2/complete",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"2",
+								"complete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCompletedByUsername",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/notes/completed?username=user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"completed"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "user"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "uncomplete",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/notes/2/uncomplete",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notes",
+								"2",
+								"uncomplete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

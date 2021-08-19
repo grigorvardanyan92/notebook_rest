@@ -33,9 +33,15 @@ public class NoteController {
         noteService.save(note);
     }
 
-    @GetMapping("/{note}/completed")
+    @GetMapping("/{note}/complete")
     public void setCompleted(@PathVariable Note note) {
         note.setIsCompleted(true);
+        noteService.save(note);
+    }
+
+    @GetMapping("/{note}/uncomplete")
+    public void setUncompleted(@PathVariable Note note) {
+        note.setIsCompleted(false);
         noteService.save(note);
     }
 
@@ -47,6 +53,13 @@ public class NoteController {
     @GetMapping("/uncompleted")
     public List<NoteResponse> getUncompletedNotes() {
         return noteService.getAllUncompletedByUserId(1L).stream().map(NoteResponse::new).collect(Collectors.toList());
+    }
+
+    @GetMapping("/completed")
+    public List<NoteResponse> getAllCompletedByUsername(
+            @RequestParam(value = "username") String username) {
+        return noteService.getAllCompletedByUsername(username)
+                .stream().map(NoteResponse::new).collect(Collectors.toList());
     }
 
     @GetMapping("/home")
